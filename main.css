@@ -1,11 +1,10 @@
-#zzz {
-  height: 300px;
-  width: 300px;
-  /* color: red; */
-  background-color: red;
-  /* font-size: large; */
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  /* align-items: center; */
 }
 
-.body {
-  background-color: green;
+#canvas {
+  background-color: #f1eded;
 }

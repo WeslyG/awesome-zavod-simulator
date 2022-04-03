@@ -1,20 +1,37 @@
 import './main.css';
-import { z } from './another';
+import { delay } from './utils';
 
-const logMouseEvent = (e: MouseEvent) => {
-  console.log('===========');
-  console.log(`x = ${e.clientX}`);
-  console.log(`y = ${e.clientY}`);
-  console.log('===========');
+type Position = { x: number; y: number };
+
+const state: Position[] = [];
+const DEBUG = false;
+
+const addPathPoint = (e: MouseEvent) => {
+  if (DEBUG) {
+    console.log('===========');
+    console.log(`x = ${e.clientX}`);
+    console.log(`y = ${e.clientY}`);
+    console.log('===========');
+  }
+  state.push({
+    x: e.clientX,
+    y: e.clientY,
+  });
+};
+
+const printLine = (e: MouseEvent, ctx: CanvasRenderingContext2D) => {
+  ctx.lineTo(e.clientX, e.clientY);
+  ctx.stroke();
 };
 
 function main() {
-  console.log(z);
-  const body = document.getElementById('zzz');
-  if (body) {
-    body?.addEventListener('mouseenter', (e) => logMouseEvent(e));
-  }
-  // body.addEventListener(onmousedown, (this, e) => console.log(e));
+  const canvas = document.getElementById('canvas') as HTMLCanvasElement;
+  const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
+
+  canvas.addEventListener('mousedown', (e) => {
+    addPathPoint(e);
+    printLine(e, ctx);
+  });
 }
 
 main();
