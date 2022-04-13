@@ -1,37 +1,38 @@
 import './main.css';
-import { delay } from './utils';
 
-type Position = { x: number; y: number };
+var spawnerType = 0;
+var spawnerTypeCursor = '#sampleCursor';
 
-const state: Position[] = [];
-const DEBUG = false;
-
-const addPathPoint = (e: MouseEvent) => {
-  if (DEBUG) {
-    console.log('===========');
-    console.log(`x = ${e.clientX}`);
-    console.log(`y = ${e.clientY}`);
-    console.log('===========');
+const getOffsetByType = (type) => {
+  if (type == '#humanSpawner') {
+    return 20;
+  } else {
+    return 2;
   }
-  state.push({
-    x: e.clientX,
-    y: e.clientY,
-  });
 };
 
-const printLine = (e: MouseEvent, ctx: CanvasRenderingContext2D) => {
-  ctx.lineTo(e.clientX, e.clientY);
-  ctx.stroke();
+document.querySelector('#humanSpawner').onclick = () => {
+  spawnerType = '#humanSpawner';
+  spawnerTypeCursor = '#humanSpawnerCursor';
+  console.log(spawnerType);
 };
 
-function main() {
-  const canvas = document.getElementById('canvas') as HTMLCanvasElement;
-  const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
+document.querySelector('#root').onclick = (event) => {
+  let div = document.createElement('div');
+  div.classList.add('asd');
+  div.style.position = 'absolute';
+  const offset = getOffsetByType(spawnerType);
+  div.style.top = event.clientY - offset + 'px';
+  div.style.left = event.clientX - offset + 'px';
+  document.querySelector('#root').append(div);
+};
 
-  canvas.addEventListener('mousedown', (e) => {
-    addPathPoint(e);
-    printLine(e, ctx);
-  });
-}
-
-main();
+document.querySelector('#root').addEventListener('mousemove', (event) => {
+  const x = event.clientX;
+  const y = event.clientY;
+  const offset = getOffsetByType(spawnerType);
+  const element = document.querySelector(spawnerTypeCursor);
+  element.style.position = 'absolute';
+  element.style.top = y - offset + 'px';
+  element.style.left = x - offset + 'px';
+});

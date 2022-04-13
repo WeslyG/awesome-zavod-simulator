@@ -1,10 +1,33 @@
-.container {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  /* align-items: center; */
+#root {
+  width: 600px;
+  height: 400px;
+  background-color: whitesmoke;
+  cursor: none;
 }
 
-#canvas {
-  background-color: #f1eded;
+#humanSpawner,
+#humanSpawnerCursor,
+#sampleCursor,
+.asd {
+  width: 40px;
+  height: 40px;
+  background-color: black;
+  border-radius: 50px;
+}
+
+#sampleCursor {
+  width: 3px;
+  height: 3px;
+}
+
+#humanSpawner {
+  position: absolute;
+  right: 100px;
+  cursor: pointer;
+}
+
+#humanSpawnerCursor {
+  opacity: 0.5;
+  position: absolute;
+  right: 50px;
 }
