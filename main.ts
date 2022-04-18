@@ -45,17 +45,17 @@ if (document && root) {
         return;
       }
       const currentPoint = allPoints[currentPointTargetForPlayerIndex];
-      if (Math.abs(playerPosition.y - currentPoint.y) < 10 && Math.abs(playerPosition.x - currentPoint.x) < 10) {
+      if (Math.abs(playerPosition.y - currentPoint.y) < 6 && Math.abs(playerPosition.x - currentPoint.x) < 6) {
         currentPointTargetForPlayerIndex++;
       }
-      if (Math.abs(playerPosition.y - currentPoint.y) >= 10) {
+      if (Math.abs(playerPosition.y - currentPoint.y) >= 6) {
         if (playerPosition.y - currentPoint.y < 0) {
           playerPosition.y = playerPosition.y + 5;
         } else {
           playerPosition.y = playerPosition.y - 5;
         }
       }
-      if (Math.abs(playerPosition.x - currentPoint.x) >= 10) {
+      if (Math.abs(playerPosition.x - currentPoint.x) >= 6) {
         if (playerPosition.x - currentPoint.x < 0) {
           playerPosition.x = playerPosition.x + 5;
         } else {
