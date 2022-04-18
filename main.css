@@ -5,6 +5,18 @@
   cursor: none;
 }
 
+#speedTest {
+  position: absolute;
+  right: 150px;
+  top: 80px;
+}
+
+#speedTestText {
+  position: absolute;
+  right: 150px;
+  top: 40px;
+}
+
 #humanSpawner,
 #humanSpawnerCursor,
 #sampleCursor,
