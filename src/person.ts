@@ -1,19 +1,16 @@
 export class Person {
-  private readonly id: number;
-  private readonly name: string;
-  private x: number = 1;
-  private y: number = 1;
+  readonly id: number;
+  readonly name: string;
+  scudID: number;
+  rtlsID: number;
+  x: number = 1;
+  y: number = 1;
 
   public constructor(id: number, name: string) {
     this.id = id;
     this.name = name;
-  }
-
-  public getAccountInfo() {
-    return {
-      id: this.id,
-      name: this.name,
-    };
+    this.scudID = this.id;
+    this.rtlsID = this.id;
   }
 
   public getCurrentPosition() {

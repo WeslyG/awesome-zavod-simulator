@@ -2,11 +2,14 @@ import { addPathPoint, getOffsetByType, onSelect } from './src/helper';
 import { watchModeButton } from './src/modeButton';
 
 import './main.css';
+import { Person } from './src/person';
+import { personCreator } from './src/personCreator';
 
 declare let window: CustomWindow;
 export interface CustomWindow extends Window {
   currentState: ModeStateType;
   moveSpeed: number;
+  personList: Person[];
 }
 
 const root = document.querySelector('#root') as HTMLDivElement | null;
@@ -17,6 +20,7 @@ export type ModeStateType = 'edit' | 'play';
 
 window.currentState = 'edit';
 window.moveSpeed = selectEl ? parseInt(selectEl?.value) : 50;
+window.personList = [];
 
 if (document && root) {
   const spawnerType = '#sample';
@@ -25,8 +29,8 @@ if (document && root) {
 
   watchModeButton();
   onSelect();
-
   addPathPoint(root, spawnerType, allPoints);
+  personCreator();
 
   root.addEventListener('mousemove', (event) => {
     const offset = getOffsetByType(spawnerType);
@@ -38,7 +42,7 @@ if (document && root) {
 
   let currentPointTargetForPlayerIndex = 0;
   let playerPosition = { x: 20, y: 20 };
-  setInterval(() => {
+  const runScript = () => {
     if (window.currentState === 'play') {
       const player = document.querySelector('#player');
       if (allPoints[currentPointTargetForPlayerIndex] == undefined) {
@@ -65,7 +69,11 @@ if (document && root) {
       player.style.top = playerPosition.y + 'px';
       player.style.left = playerPosition.x + 'px';
     }
-  }, 30);
+  };
+
+  setInterval(() => {
+    runScript();
+  }, 20);
 
   // clearInterval(intervalId);
 }
