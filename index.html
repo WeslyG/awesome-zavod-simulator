@@ -9,7 +9,7 @@
   <body>
     <div id="container">
       <div id="left">
-        <div id="root">
+        <div id="actionArea">
           <div id="humanSpawnerCursor"></div>
           <div id="sampleCursor"></div>
         </div>
@@ -18,25 +18,39 @@
       <div id="right">
         <div id="userContainer">
           <!-- Пользователи -->
-          <div id="createNewPerson">Добавить персонажа</div>
           <ul id="personList">
             <!-- в li насечивает скрипт новых юзверей и хранит их в window -->
+            <!-- userCard -->
           </ul>
         </div>
+        <div id="createUserWrapper">
+          <div id="createNewPerson">Добавить персонажа</div>
+        </div>
 
-        <div id="modeButton"></div>
+        <!-- Препятствия -->
+        <div id="controlUnit">
+          <p>Препятствия</p>
+          <div id="controlUnitActions">
+            <div id="camera">Camera</div>
+            <div id="scud">SCUD</div>
+            <div id="rtls">RTLS</div>
+            <div id="wall">Wall</div>
+          </div>
+        </div>
 
-        <div id="player"></div>
-        <div id="humanSpawner"></div>
+        <!-- Play/pause -->
+        <div id="modeButton">PLAY</div>
 
-        <!-- Speed choice -->
-        <p id="speedTestText">Выбор скорости</p>
-        <select id="speedTest">
-          <option value="20">20</option>
-          <option selected value="50">50</option>
-          <option value="80">80</option>
-          <option value="600">600</option>
-        </select>
+        <div id="footer">
+          <!-- Speed choice -->
+          <p id="speedTestText">Выбор скорости</p>
+          <select id="speedTest">
+            <option value="20">20</option>
+            <option selected value="50">50</option>
+            <option value="80">80</option>
+            <option value="600">600</option>
+          </select>
+        </div>
       </div>
     </div>
   </body>

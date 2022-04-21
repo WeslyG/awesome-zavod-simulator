@@ -6,38 +6,107 @@
 
 #left {
   width: 100%;
-  height: 100%;
   border: 1px solid rgb(145, 17, 17);
 }
 
 #right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   width: 100%;
-  /* height: 100%; */
   border: 1px solid rgb(18, 133, 23);
+  padding: 0 50px 0 50px;
 }
 
-#root {
+#createUserWrapper {
+  display: flex;
+  justify-content: right;
+}
+
+#createNewPerson {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #fa5252;
+  color: whitesmoke;
+  font-size: 16px;
+  background: #fa5252;
+  border-radius: 5px;
+  width: 200px;
+  height: 40px;
+}
+
+#userContainer {
+  border: 1px solid rgb(36, 25, 189);
+  height: 500px;
+}
+
+#controlUnit {
+  border: 1px solid rgb(33, 38, 39);
+}
+
+#controlUnit p {
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+}
+
+#controlUnitActions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  /* border: 1px solid rgb(182, 16, 146); */
+}
+
+#controlUnitActions div {
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+#modeButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border: 1px solid #e64980;
+  background: #e64980;
+  color: whitesmoke;
+  border-radius: 10px;
+  font-size: 22px;
+  padding: 14px;
+  cursor: pointer;
+}
+
+#footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: center;
+  /* border: 1px solid rgb(226, 16, 97); */
+}
+
+#speedTestText {
+  padding-right: 20px;
+}
+
+#speedTest {
+  width: 150px;
+  height: 40px;
+}
+
+#actionArea {
   width: 900px;
   height: 900px;
   background-color: whitesmoke;
   cursor: none;
 }
 
-#speedTest {
-  /* position: absolute; */
-  right: 150px;
-  top: 80px;
-}
-
-#speedTestText {
-  /* position: absolute; */
-  right: 150px;
-  top: 40px;
-}
-
-#humanSpawner,
+/* #humanSpawner,
 #humanSpawnerCursor,
-#sampleCursor,
+#sampleCursor, */
 .partPoint {
   width: 10px;
   height: 10px;
@@ -45,32 +114,22 @@
   border-radius: 50px;
 }
 
-#sampleCursor {
+/* #sampleCursor {
   width: 3px;
   height: 3px;
-}
+} */
 
-#humanSpawner {
+/* #humanSpawner {
   position: absolute;
   right: 100px;
   cursor: pointer;
-}
+} */
 
-#humanSpawnerCursor {
+/* #humanSpawnerCursor {
   opacity: 0.5;
   position: absolute;
   right: 50px;
-}
-
-#modeButton {
-  position: absolute;
-  right: 50px;
-  top: 50px;
-  background: rgb(255, 131, 177);
-  border-radius: 10px;
-  padding: 20px;
-  cursor: pointer;
-}
+} */
 
 #player {
   position: absolute;
