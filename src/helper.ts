@@ -29,12 +29,13 @@ export const addPathPoint = (root: HTMLDivElement, spawnerType: string, allPoint
   let previous: HTMLDivElement | undefined = undefined;
   root.onclick = (event) => {
     let div = createDiv();
-    div.classList.add('asd');
+    div.classList.add('partPoint');
     div.style.position = 'absolute';
 
     const offset = getOffsetByType(spawnerType);
-    div.style.top = event.clientY - offset + 'px';
-    div.style.left = event.clientX - offset + 'px';
+    // Все равно криво
+    div.style.top = event.clientY - offset + 5 + 'px';
+    div.style.left = event.clientX - offset + 5 + 'px';
     if (previous != undefined) {
       drawLine(event.clientX - offset, event.clientY, previous.style.left, previous.style.top);
     }

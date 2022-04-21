@@ -7,29 +7,35 @@
     <title>Awesome zavod</title>
   </head>
   <body>
-    <div id="humanSpawner"></div>
-    <div id="playButton"></div>
+    <div id="container">
+      <div id="left">
+        <div id="root">
+          <div id="humanSpawnerCursor"></div>
+          <div id="sampleCursor"></div>
+        </div>
+      </div>
 
-    <p id="speedTestText">Выбор скорости</p>
-    <select id="speedTest">
-      <option value="20">20</option>
-      <option selected value="50">50</option>
-      <option value="80">80</option>
-      <option value="600">600</option>
-    </select>
+      <div id="right">
+        <!-- Пользователи -->
+        <div id="createNewPerson">Добавить персонажа</div>
+        <ul id="personList">
+          <!-- в li насечивает скрипт новых юзверей и хранит их в window -->
+        </ul>
 
-    <!-- Пользователи -->
-    <div id="createNewPerson">Добавить персонажа</div>
-    <ul id="personList">
-      <!-- в li насечивает скрипт новых юзверей и хранит их в window -->
-    </ul>
+        <div id="modeButton"></div>
 
-    <div id="modeButton"></div>
-    <div id="player"></div>
+        <div id="player"></div>
+        <div id="humanSpawner"></div>
 
-    <div id="root">
-      <div id="humanSpawnerCursor"></div>
-      <div id="sampleCursor"></div>
+        <!-- Speed choice -->
+        <p id="speedTestText">Выбор скорости</p>
+        <select id="speedTest">
+          <option value="20">20</option>
+          <option selected value="50">50</option>
+          <option value="80">80</option>
+          <option value="600">600</option>
+        </select>
+      </div>
     </div>
   </body>
 </html>
