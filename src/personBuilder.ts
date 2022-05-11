@@ -1,43 +1,79 @@
-import { createDiv } from './helper';
+import { createDiv, generateRandomColor } from './helper';
 import { Person } from './person';
 
 export const personBuilder = (person: Person) => {
   const personDiv = createDiv();
-  personDiv.setAttribute('id', person.id.toString());
+  const leftColumn = createDiv();
+  const rightColumn = createDiv();
 
+  personDiv.setAttribute('class', 'userCard');
+  leftColumn.setAttribute('class', 'leftFlex');
+  rightColumn.setAttribute('class', 'rightFlex');
+
+  // ID
+  const idWrapper = createDiv();
+  idWrapper.setAttribute('class', 'userWrapper');
+  idWrapper.setAttribute('id', 'idWrapper');
   const pId = document.createElement('p');
   pId.innerHTML = `id = ${person.id.toString()}`;
-  personDiv.appendChild(pId);
+  idWrapper.appendChild(pId);
+  leftColumn.appendChild(idWrapper);
 
   // NAME
+  const nameWrapper = createDiv();
+  nameWrapper.setAttribute('class', 'userWrapper');
   const pName = document.createElement('p');
+  pName.setAttribute('class', 'personNameText personText');
   pName.innerHTML = 'Имя';
-  personDiv.appendChild(pName);
+  nameWrapper.appendChild(pName);
 
   const inputName = document.createElement('input');
   inputName.type = 'text';
   inputName.value = person.name;
-  personDiv.appendChild(inputName);
+  inputName.setAttribute('class', 'personNameInput personInput');
+  nameWrapper.appendChild(inputName);
+  leftColumn.appendChild(nameWrapper);
 
   // RTLS
+  const rtlsWrapper = createDiv();
+  rtlsWrapper.setAttribute('class', 'userWrapper');
   const pRtls = document.createElement('p');
   pRtls.innerHTML = 'rtlsID';
-  personDiv.appendChild(pRtls);
+  pRtls.setAttribute('class', 'personRtlsText personText');
+  rtlsWrapper.appendChild(pRtls);
 
   const inputRTLS = document.createElement('input');
   inputRTLS.type = 'text';
   inputRTLS.value = person.rtlsID.toString();
-  personDiv.appendChild(inputRTLS);
+  inputRTLS.setAttribute('class', 'personRtlsInput personInput');
+  rtlsWrapper.appendChild(inputRTLS);
+  leftColumn.appendChild(rtlsWrapper);
 
   // SCUD
+  const scudWrapper = createDiv();
+  scudWrapper.setAttribute('class', 'userWrapper');
   const pScud = document.createElement('p');
   pScud.innerHTML = 'scudID';
-  personDiv.appendChild(pScud);
+  pScud.setAttribute('class', 'personScudText personText');
+  scudWrapper.appendChild(pScud);
 
   const inputScud = document.createElement('input');
   inputScud.type = 'text';
   inputScud.value = person.scudID.toString();
-  personDiv.appendChild(inputScud);
+  inputScud.setAttribute('class', 'personRtlsInput personInput');
+  scudWrapper.appendChild(inputScud);
+  leftColumn.appendChild(scudWrapper);
+
+  const selectButton = createDiv();
+  selectButton.setAttribute('class', 'selectUserButton');
+  selectButton.setAttribute('id', `SelectId${person.id.toString()}`);
+  selectButton.setAttribute('style', `background: ${generateRandomColor()}`);
+
+  selectButton.innerHTML = 'Выбрать';
+  rightColumn.appendChild(selectButton);
+
+  personDiv.appendChild(leftColumn);
+  personDiv.appendChild(rightColumn);
 
   return personDiv;
 

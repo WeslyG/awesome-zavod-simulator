@@ -58,10 +58,16 @@ export const generateRandomUserName = () => {
   return randomChoice(russianMansNames);
 };
 
+export const generateRandomColor = () => {
+  return randomChoice(colors);
+};
+
 export const randomChoice = <T>(choices: Array<T>): T => {
   const index = Math.floor(Math.random() * choices.length);
   return choices[index];
 };
+
+export const colors = ['#1EA7E3', '#1ABCB1', '#92C83F', '#107AA2', '#FCD20A', '#F0509A'];
 
 export const russianMansNames = [
   'Александр',

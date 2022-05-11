@@ -90,9 +90,57 @@ body {
   background-color: #7950f2c5;
 }
 
+#personList {
+  margin: 0px;
+  padding: 15px;
+  list-style-type: none;
+}
+
+#idWrapper {
+  display: flex;
+  justify-content: left;
+}
+
+.personInput {
+  height: 20px;
+  border: 1px solid rgba(33, 38, 39, 0.425);
+  margin-left: 15px;
+}
+
+.selectUserButton {
+  cursor: pointer;
+  padding: 15px 25px 15px 25px;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  color: white;
+}
+
+.userCard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border: 1px solid rgba(33, 38, 39, 0.425);
+  margin-bottom: 8px;
+}
+
+.userWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 35px;
+}
+
+.rightFlex {
+  display: flex;
+  align-items: flex-end;
+}
+
 #userContainer {
   border: 1px solid rgba(33, 38, 39, 0.425);
-  height: 61%;
+  height: 500px;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 #controlUnit {
@@ -121,6 +169,7 @@ body {
   padding: 15px 40px 15px 40px;
   border-radius: 3px;
   cursor: pointer;
+  color: white;
 }
 
 #modeButton {
@@ -162,33 +211,6 @@ body {
   background-color: whitesmoke;
   cursor: none;
 }
-
-/* #humanSpawner,
-#humanSpawnerCursor,
-#sampleCursor, */
-.partPoint {
-  width: 10px;
-  height: 10px;
-  background-color: black;
-  border-radius: 50px;
-}
-
-/* #sampleCursor {
-  width: 3px;
-  height: 3px;
-} */
-
-/* #humanSpawner {
-  position: absolute;
-  right: 100px;
-  cursor: pointer;
-} */
-
-/* #humanSpawnerCursor {
-  opacity: 0.5;
-  position: absolute;
-  right: 50px;
-} */
 
 #player {
   position: absolute;

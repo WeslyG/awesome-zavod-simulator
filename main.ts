@@ -12,27 +12,27 @@ export interface CustomWindow extends Window {
   personList: Person[];
 }
 
-const root = document.querySelector('#root') as HTMLDivElement | null;
+const rootContainer = document.querySelector('#container') as HTMLDivElement | null;
 const selectEl = document.querySelector('#speedTest') as HTMLSelectElement | null;
 
 export type AllPointsType = Array<{ x: number; y: number }>;
-export type ModeStateType = 'edit' | 'play';
+export type ModeStateType = 'Edit' | 'Play';
 
-window.currentState = 'edit';
+window.currentState = 'Play';
 window.moveSpeed = selectEl ? parseInt(selectEl?.value) : 50;
 window.personList = [];
 
-if (document && root) {
+if (document && rootContainer) {
   const spawnerType = '#sample';
   const spawnerTypeCursor = '#sampleCursor';
   const allPoints: AllPointsType = [];
 
   watchModeButton();
   onSelect();
-  addPathPoint(root, spawnerType, allPoints);
+  addPathPoint(rootContainer, spawnerType, allPoints);
   personCreator();
 
-  root.addEventListener('mousemove', (event) => {
+  rootContainer.addEventListener('mousemove', (event) => {
     const offset = getOffsetByType(spawnerType);
     const element = document.querySelector(spawnerTypeCursor);
     element.style.position = 'absolute';
@@ -43,7 +43,7 @@ if (document && root) {
   let currentPointTargetForPlayerIndex = 0;
   let playerPosition = { x: 20, y: 20 };
   const runScript = () => {
-    if (window.currentState === 'play') {
+    if (window.currentState === 'Play') {
       const player = document.querySelector('#player');
       if (allPoints[currentPointTargetForPlayerIndex] == undefined) {
         return;
