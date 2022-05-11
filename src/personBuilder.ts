@@ -66,8 +66,8 @@ export const personBuilder = (person: Person) => {
 
   const selectButton = createDiv();
   selectButton.setAttribute('class', 'selectUserButton');
-  selectButton.setAttribute('id', `SelectId${person.id.toString()}`);
-  selectButton.setAttribute('style', `background: ${generateRandomColor()}`);
+  selectButton.setAttribute('id', `${person.id.toString()}`);
+  selectButton.setAttribute('style', `background: ${person.color}`);
 
   selectButton.innerHTML = 'Выбрать';
   rightColumn.appendChild(selectButton);

@@ -12,14 +12,15 @@ export interface CustomWindow extends Window {
   personList: Person[];
 }
 
-const rootContainer = document.querySelector('#container') as HTMLDivElement | null;
-const selectEl = document.querySelector('#speedTest') as HTMLSelectElement | null;
-
 export type AllPointsType = Array<{ x: number; y: number }>;
 export type ModeStateType = 'Edit' | 'Play';
 
-window.currentState = 'Play';
+const rootContainer = document.querySelector('#container') as HTMLDivElement | null;
+
+const selectEl = document.querySelector('#speedTest') as HTMLSelectElement | null;
 window.moveSpeed = selectEl ? parseInt(selectEl?.value) : 50;
+
+window.currentState = 'Play';
 window.personList = [];
 
 if (document && rootContainer) {
@@ -42,7 +43,7 @@ if (document && rootContainer) {
 
   let currentPointTargetForPlayerIndex = 0;
   let playerPosition = { x: 20, y: 20 };
-  const runScript = () => {
+  const runPerson = () => {
     if (window.currentState === 'Play') {
       const player = document.querySelector('#player');
       if (allPoints[currentPointTargetForPlayerIndex] == undefined) {
@@ -72,7 +73,7 @@ if (document && rootContainer) {
   };
 
   setInterval(() => {
-    runScript();
+    runPerson();
   }, 20);
 
   // clearInterval(intervalId);

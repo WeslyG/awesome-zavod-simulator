@@ -1,6 +1,9 @@
+import { generateRandomColor } from './helper';
+
 export class Person {
   readonly id: number;
   readonly name: string;
+  readonly color: string;
   scudID: number;
   rtlsID: number;
   x: number = 1;
@@ -11,6 +14,7 @@ export class Person {
     this.name = name;
     this.scudID = this.id;
     this.rtlsID = this.id;
+    this.color = generateRandomColor();
   }
 
   public getCurrentPosition() {
