@@ -209,7 +209,7 @@ body {
 #actionArea {
   height: 900px;
   background-color: whitesmoke;
-  cursor: none;
+  /* cursor: none; */
 }
 
 #player {
