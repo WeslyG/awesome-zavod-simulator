@@ -1,8 +1,6 @@
-import { Points, CustomWindow } from '../main';
+import { Points, CustomWindow, area } from '../main';
 
 declare let window: CustomWindow;
-
-const area = document.querySelector('#actionArea') as HTMLDivElement;
 
 export const lineBuilder = () => {
   window.previous = undefined;

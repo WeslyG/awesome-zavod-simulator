@@ -25,8 +25,14 @@ export const personCreator = () => {
             const element = document.querySelector(`#\\3${i.id} > div.rightFlex > div`);
             const userCard = document.querySelector(`#\\3${i.id}`);
             if (i.id === this.id) {
-              element.innerHTML = 'Выбрано';
-              userCard.style.backgroundColor = 'whitesmoke';
+              if (element.innerHTML === 'Выбрано') {
+                element.innerHTML = 'Выбрать';
+                userCard.style.backgroundColor = '#fff';
+                window.selectedCurrentUser = undefined;
+              } else {
+                element.innerHTML = 'Выбрано';
+                userCard.style.backgroundColor = 'whitesmoke';
+              }
             } else {
               element.innerHTML = 'Выбрать';
               userCard.style.backgroundColor = '#fff';

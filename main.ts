@@ -5,6 +5,7 @@ import './main.css';
 import { Person } from './src/person';
 import { personCreator } from './src/personCreator';
 import { speedSelect } from './src/speedSelect';
+import { initActions } from './src/actions/actionList';
 
 declare let window: CustomWindow;
 export interface CustomWindow extends Window {
@@ -13,6 +14,7 @@ export interface CustomWindow extends Window {
   previous: undefined | HTMLDivElement;
   personList: Person[];
   runIntervalID: number;
+  moveElement: boolean;
   selectedCurrentUser: undefined | number;
 }
 
@@ -21,8 +23,11 @@ export type Points = Array<Coordinates>;
 export type ModeStateType = 'Edit' | 'Play';
 
 export const rootContainer = document.querySelector('#container') as HTMLDivElement;
+export const area = document.querySelector('#actionArea') as HTMLDivElement;
 
 window.currentState = 'Play';
+
+window.moveElement = false;
 
 window.selectedCurrentUser = undefined;
 
@@ -38,6 +43,9 @@ if (document && rootContainer) {
 
   // line view
   lineBuilder();
+
+  // Editor
+  initActions();
 
   // Speed state
   speedSelect();
