@@ -7,6 +7,7 @@ export const personBuilder = (person: Person) => {
   const rightColumn = createDiv();
 
   personDiv.setAttribute('class', 'userCard');
+  personDiv.setAttribute('id', `${person.id.toString()}`);
   leftColumn.setAttribute('class', 'leftFlex');
   rightColumn.setAttribute('class', 'rightFlex');
 
@@ -66,7 +67,6 @@ export const personBuilder = (person: Person) => {
 
   const selectButton = createDiv();
   selectButton.setAttribute('class', 'selectUserButton');
-  selectButton.setAttribute('id', `${person.id.toString()}`);
   selectButton.setAttribute('style', `background: ${person.color}`);
 
   selectButton.innerHTML = 'Выбрать';

@@ -4,29 +4,33 @@ declare let window: CustomWindow;
 
 const area = document.querySelector('#actionArea') as HTMLDivElement;
 
-export const lineBuilder = (personPoint: Points, color: string = 'black') => {
-  let previous: undefined | HTMLDivElement = undefined;
+export const lineBuilder = () => {
+  window.previous = undefined;
   area.onclick = (event) => {
-    const div = createDiv();
-    const size = 10;
+    if (window.selectedCurrentUser != undefined) {
+      const person = window.personList[window.selectedCurrentUser - 1];
+      const personPoint: Points = person.pointList;
+      const div = createDiv();
+      const size = 10;
 
-    div.style.position = 'absolute';
-    div.style.height = `${size}px`;
-    div.style.width = `${size}px`;
-    div.style.borderRadius = '50%';
-    div.style.top = `${event.offsetY}px`;
-    div.style.left = `${event.offsetX}px`;
-    div.style.backgroundColor = color;
-    area.append(div);
+      div.style.position = 'absolute';
+      div.style.height = `${size}px`;
+      div.style.width = `${size}px`;
+      div.style.borderRadius = '50%';
+      div.style.top = `${event.offsetY}px`;
+      div.style.left = `${event.offsetX}px`;
+      div.style.backgroundColor = person.color;
+      area.append(div);
 
-    if (previous !== undefined) {
-      drawLine(event.offsetX, event.offsetY, previous.style.left, previous.style.top, color);
+      if (window.previous !== undefined) {
+        drawLine(event.offsetX, event.offsetY, window.previous.style.left, window.previous.style.top, person.color);
+      }
+      window.previous = div;
+      personPoint.push({
+        x: event.offsetX,
+        y: event.offsetY,
+      });
     }
-    previous = div;
-    personPoint.push({
-      x: event.offsetX,
-      y: event.offsetY,
-    });
   };
 };
 

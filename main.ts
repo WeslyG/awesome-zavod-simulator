@@ -1,4 +1,4 @@
-import { lineBuilder } from './src/helper';
+import { createDiv, lineBuilder } from './src/helper';
 import { watchModeButton as playButtonState } from './src/modeButton';
 
 import './main.css';
@@ -10,25 +10,25 @@ declare let window: CustomWindow;
 export interface CustomWindow extends Window {
   currentState: ModeStateType;
   moveSpeed: number;
+  previous: undefined | HTMLDivElement;
   personList: Person[];
+  selectedCurrentUser: undefined | number;
 }
 
-export type Points = Array<{ x: number; y: number }>;
+export type Coordinates = { x: number; y: number };
+export type Points = Array<Coordinates>;
 export type ModeStateType = 'Edit' | 'Play';
 
 const rootContainer = document.querySelector('#container') as HTMLDivElement;
 
 window.currentState = 'Play';
 
-let selectedCurrentUser;
+window.selectedCurrentUser = undefined;
 
 // TODO:  экспорты или чтение из localSTorage
 window.personList = [];
 
 if (document && rootContainer) {
-  const personPoint: Points = [];
-  window.personPoint = personPoint;
-
   // Speed state
   speedSelect();
 
@@ -39,46 +39,61 @@ if (document && rootContainer) {
   playButtonState();
 
   // Risovalka
-  lineBuilder(personPoint, 'red');
+  lineBuilder();
 
-  let currentPointTargetForPlayerIndex = 0;
-  let playerPosition = { x: 0, y: 0 };
-  const runPerson = () => {
+  const runPerson = (person: Person) => {
     if (window.currentState === 'Edit') {
-      const player = document.querySelector('#player') as HTMLDivElement;
-      const currentPoint = personPoint[currentPointTargetForPlayerIndex];
-      if (currentPointTargetForPlayerIndex === 0) {
-        player.style.visibility = 'visible';
-        playerPosition.y = personPoint[0].y;
-        playerPosition.x = personPoint[0].x;
-      }
+      const currentPoint = person.pointList[person.currentPointTarget];
       if (currentPoint === undefined) {
         return;
       }
-      if (Math.abs(playerPosition.y - currentPoint.y) < 6 && Math.abs(playerPosition.x - currentPoint.x) < 6) {
-        currentPointTargetForPlayerIndex++;
+
+      let player;
+
+      if (person.currentPointTarget === 0) {
+        player = createDiv();
+        player.setAttribute('class', `player player${person.id}`);
+        rootContainer.append(player);
+        player.style.backgroundColor = person.color;
+        player.style.position = 'absolute';
+        player.style.width = '18px';
+        player.style.height = '18px';
+        player.style.borderRadius = '50%';
+
+        person.setPosition({
+          x: person.pointList[0].x,
+          y: person.pointList[0].y,
+        });
+      } else {
+        player = document.querySelector(`.player${person.id}`) as HTMLDivElement;
       }
-      if (Math.abs(playerPosition.y - currentPoint.y) >= 6) {
-        if (playerPosition.y - currentPoint.y < 0) {
-          playerPosition.y = playerPosition.y + 5;
+
+      if (Math.abs(person.y - currentPoint.y) < 6 && Math.abs(person.x - currentPoint.x) < 6) {
+        person.currentPointTarget++;
+      }
+      if (Math.abs(person.y - currentPoint.y) >= 6) {
+        if (person.y - currentPoint.y < 0) {
+          person.y = person.y + 5;
         } else {
-          playerPosition.y = playerPosition.y - 5;
+          person.y = person.y - 5;
         }
       }
-      if (Math.abs(playerPosition.x - currentPoint.x) >= 6) {
-        if (playerPosition.x - currentPoint.x < 0) {
-          playerPosition.x = playerPosition.x + 5;
+      if (Math.abs(person.x - currentPoint.x) >= 6) {
+        if (person.x - currentPoint.x < 0) {
+          person.x = person.x + 5;
         } else {
-          playerPosition.x = playerPosition.x - 5;
+          person.x = person.x - 5;
         }
       }
-      player.style.top = playerPosition.y + 'px';
-      player.style.left = playerPosition.x + 'px';
+      player.style.top = person.y + 'px';
+      player.style.left = person.x + 'px';
     }
   };
 
   setInterval(() => {
-    runPerson();
+    window.personList.map((i) => {
+      runPerson(i);
+    });
   }, 25);
 
   // clearInterval(intervalId);

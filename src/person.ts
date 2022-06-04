@@ -1,13 +1,16 @@
+import { Points } from '../main';
 import { generateRandomColor } from './helper';
 
 export class Person {
   readonly id: number;
   readonly name: string;
   readonly color: string;
+
   scudID: number;
   rtlsID: number;
-  x: number = 1;
-  y: number = 1;
+
+  public x: number = 0;
+  public y: number = 0;
 
   public constructor(id: number, name: string) {
     this.id = id;
@@ -17,15 +20,19 @@ export class Person {
     this.color = generateRandomColor();
   }
 
+  public currentPointTarget: number = 0;
+
+  public pointList: Points = [];
+
+  public setPosition({ x, y }) {
+    this.x = x;
+    this.y = y;
+  }
+
   public getCurrentPosition() {
     return {
       x: this.x,
       y: this.y,
     };
-  }
-
-  public moveTo({ x, y }) {
-    this.x = x;
-    this.y = y;
   }
 }

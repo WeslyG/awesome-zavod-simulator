@@ -209,14 +209,4 @@ body {
 #actionArea {
   height: 900px;
   background-color: whitesmoke;
-  /* cursor: none; */
-}
-
-#player {
-  position: absolute;
-  width: 22px;
-  height: 22px;
-  background-color: rgb(254, 110, 110);
-  border-radius: 50px;
-  visibility: hidden;
 }
