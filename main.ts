@@ -1,9 +1,10 @@
-import { addPathPoint, getOffsetByType, onSelect } from './src/helper';
-import { watchModeButton } from './src/modeButton';
+import { lineBuilder } from './src/helper';
+import { watchModeButton as playButtonState } from './src/modeButton';
 
 import './main.css';
 import { Person } from './src/person';
 import { personCreator } from './src/personCreator';
+import { speedSelect } from './src/speedSelect';
 
 declare let window: CustomWindow;
 export interface CustomWindow extends Window {
@@ -12,44 +13,48 @@ export interface CustomWindow extends Window {
   personList: Person[];
 }
 
-export type AllPointsType = Array<{ x: number; y: number }>;
+export type Points = Array<{ x: number; y: number }>;
 export type ModeStateType = 'Edit' | 'Play';
 
-const rootContainer = document.querySelector('#container') as HTMLDivElement | null;
-
-const selectEl = document.querySelector('#speedTest') as HTMLSelectElement | null;
-window.moveSpeed = selectEl ? parseInt(selectEl?.value) : 50;
+const rootContainer = document.querySelector('#container') as HTMLDivElement;
 
 window.currentState = 'Play';
+
+let selectedCurrentUser;
+
+// TODO:  экспорты или чтение из localSTorage
 window.personList = [];
 
 if (document && rootContainer) {
-  const spawnerType = '#sample';
-  const spawnerTypeCursor = '#sampleCursor';
-  const allPoints: AllPointsType = [];
+  const personPoint: Points = [];
+  window.personPoint = personPoint;
 
-  watchModeButton();
-  onSelect();
-  addPathPoint(rootContainer, spawnerType, allPoints);
+  // Speed state
+  speedSelect();
+
+  // Person State
   personCreator();
 
-  rootContainer.addEventListener('mousemove', (event) => {
-    const offset = getOffsetByType(spawnerType);
-    const element = document.querySelector(spawnerTypeCursor);
-    element.style.position = 'absolute';
-    element.style.top = event.clientY - offset + 'px';
-    element.style.left = event.clientX - offset + 'px';
-  });
+  // Current mode state
+  playButtonState();
+
+  // Risovalka
+  lineBuilder(personPoint, 'red');
 
   let currentPointTargetForPlayerIndex = 0;
-  let playerPosition = { x: 20, y: 20 };
+  let playerPosition = { x: 0, y: 0 };
   const runPerson = () => {
-    if (window.currentState === 'Play') {
-      const player = document.querySelector('#player');
-      if (allPoints[currentPointTargetForPlayerIndex] == undefined) {
+    if (window.currentState === 'Edit') {
+      const player = document.querySelector('#player') as HTMLDivElement;
+      const currentPoint = personPoint[currentPointTargetForPlayerIndex];
+      if (currentPointTargetForPlayerIndex === 0) {
+        player.style.visibility = 'visible';
+        playerPosition.y = personPoint[0].y;
+        playerPosition.x = personPoint[0].x;
+      }
+      if (currentPoint === undefined) {
         return;
       }
-      const currentPoint = allPoints[currentPointTargetForPlayerIndex];
       if (Math.abs(playerPosition.y - currentPoint.y) < 6 && Math.abs(playerPosition.x - currentPoint.x) < 6) {
         currentPointTargetForPlayerIndex++;
       }
@@ -74,7 +79,7 @@ if (document && rootContainer) {
 
   setInterval(() => {
     runPerson();
-  }, 20);
+  }, 25);
 
   // clearInterval(intervalId);
 }

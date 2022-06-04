@@ -189,7 +189,7 @@ body {
   background: #e64980;
 }
 
-#speedTestMenu {
+#speedSelectMenu {
   display: flex;
   flex-direction: row;
   justify-content: right;
@@ -197,11 +197,11 @@ body {
   height: 0px;
 }
 
-#speedTestText {
+#speedSelectText {
   padding-right: 20px;
 }
 
-#speedTest {
+#speedSelect {
   width: 150px;
   height: 30px;
 }
@@ -214,10 +214,9 @@ body {
 
 #player {
   position: absolute;
-  left: 20px;
-  top: 20px;
   width: 22px;
   height: 22px;
   background-color: rgb(254, 110, 110);
   border-radius: 50px;
+  visibility: hidden;
 }
