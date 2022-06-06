@@ -67,6 +67,35 @@ export const clearAll = () => {
   window.previous = undefined;
 };
 
+export const resetPosition = () => {
+  if (arrayNotEmpty(window.personList)) {
+    window.personList.map((i) => (i.currentPointTarget = 0));
+    const players = document.querySelectorAll('.player');
+    const playersArr = Array.from(players);
+    if (arrayNotEmpty(playersArr)) {
+      playersArr.map((player) => {
+        const classes = player.classList;
+        let playerId;
+        Array.from(classes).map((cls) => {
+          const res = cls.match(/\d+$/);
+          if (res) {
+            playerId = parseInt(res[0], 10);
+          }
+        });
+        if (playerId) {
+          console.log(player);
+          player.style.top = window.personList[playerId - 1].pointList[0].y + 'px';
+          player.style.left = window.personList[playerId - 1].pointList[0].x + 'px';
+        }
+      });
+    }
+  }
+};
+
+export const arrayNotEmpty = (array: Array<any>): boolean => {
+  return array.length > 0;
+};
+
 export const generateRandomUserName = () => {
   return randomChoice(russianMansNames);
 };

@@ -1,4 +1,4 @@
-import { clearAll, createDiv, lineBuilder } from './src/helper';
+import { clearAll, lineBuilder, resetPosition } from './src/helper';
 import { watchModeButton as playButtonState } from './src/modeButton';
 
 import './main.css';
@@ -27,6 +27,7 @@ export type ModeStateType = 'Edit' | 'Play';
 export const rootContainer = document.querySelector('#container') as HTMLDivElement;
 export const area = document.querySelector('#actionArea') as HTMLDivElement;
 export const clearAllElement = document.querySelector('#clearAll') as HTMLDivElement;
+export const resetElement = document.querySelector('#reset') as HTMLDivElement;
 
 window.currentState = 'Play';
 
@@ -40,6 +41,7 @@ if (document && rootContainer) {
   personCreator();
 
   clearAllElement.onclick = () => clearAll();
+  resetElement.onclick = () => resetPosition();
 
   area.onmousedown = (e) => {
     console.log(e);
