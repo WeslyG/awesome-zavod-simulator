@@ -4,7 +4,7 @@ import { area, CustomWindow } from '../../main';
 
 export const actionEditor = (action: Action) => {
   const div = createDiv();
-  div.setAttribute('class', `${action.name}Obstacle`);
+  div.setAttribute('class', `${action.name}Obstacle obstacle`);
   div.style.backgroundColor = action.color;
   div.style.position = 'absolute';
   div.style.height = '120px';

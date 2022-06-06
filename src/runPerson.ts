@@ -1,4 +1,4 @@
-import { area, CustomWindow, rootContainer } from '../main';
+import { area, CustomWindow } from '../main';
 import { createDiv } from './helper';
 import { Person } from './person';
 

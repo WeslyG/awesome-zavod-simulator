@@ -44,7 +44,7 @@ export const drawLine = (x1, y1, x2, y2, color) => {
   var newDiv = document.createElement('div');
   newDiv.style.position = 'absolute';
   newDiv.innerHTML = `
-    <svg width="900" height="900">
+    <svg width="1150" height="900">
       <line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${color}"/>
     </svg>`;
   area.append(newDiv);

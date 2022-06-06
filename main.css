@@ -96,6 +96,18 @@ body {
   list-style-type: none;
 }
 
+.obstacle {
+  cursor: grab;
+}
+
+#logView {
+  visibility: hidden;
+  margin: 0px;
+  padding: 15px;
+  color: red;
+  list-style-type: none;
+}
+
 #idWrapper {
   display: flex;
   justify-content: left;
@@ -198,8 +210,6 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  border: 1px solid #e64980;
-  background: #e64980d0;
   color: whitesmoke;
   border-radius: 5px;
   font-size: 20px;

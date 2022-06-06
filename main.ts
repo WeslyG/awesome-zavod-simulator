@@ -56,17 +56,18 @@ if (document && rootContainer) {
     if (window.selectedMovedElement != undefined) {
       window.selectedMovedElement.style.top = e.clientY - window.movedOffsetY + 'px';
       window.selectedMovedElement.style.left = e.clientX - window.movedOffsetX + 'px';
+      window.selectedMovedElement.style.cursor = 'grabbing';
     }
   };
 
   area.onmouseup = () => {
-    window.selectedMovedElement = undefined;
+    if (window.selectedMovedElement) {
+      window.selectedMovedElement.style.cursor = 'grab';
+      window.selectedMovedElement = undefined;
+    }
     window.movedOffsetX = undefined;
     window.movedOffsetY = undefined;
   };
-
-  // Current mode state
-  playButtonState();
 
   // line view
   lineBuilder();
