@@ -38,7 +38,6 @@ window.selectedCurrentUser = undefined;
 window.personList = [];
 
 if (document && rootContainer) {
-  console.log(window.rerenderLineColor);
   // Person State
   personCreator();
 
@@ -55,10 +54,6 @@ if (document && rootContainer) {
 
   area.onmousemove = (e) => {
     if (window.selectedMovedElement != undefined) {
-      // TODO: Проверить
-      // if (window.selectedCurrentUser != undefined) {
-      //   window.selectedCurrentUser = undefined;
-      // }
       window.selectedMovedElement.style.top = e.clientY - window.movedOffsetY + 'px';
       window.selectedMovedElement.style.left = e.clientX - window.movedOffsetX + 'px';
     }

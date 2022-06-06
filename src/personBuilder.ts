@@ -32,6 +32,9 @@ export const personBuilder = (person: Person) => {
   inputName.type = 'text';
   inputName.value = person.name;
   inputName.setAttribute('class', 'personNameInput personInput');
+  inputName.onchange = (e) => {
+    person.name = e.target.value;
+  };
   nameWrapper.appendChild(inputName);
   leftColumn.appendChild(nameWrapper);
 
@@ -47,6 +50,9 @@ export const personBuilder = (person: Person) => {
   inputRTLS.type = 'text';
   inputRTLS.value = person.rtlsID.toString();
   inputRTLS.setAttribute('class', 'personRtlsInput personInput');
+  inputRTLS.onchange = (e) => {
+    person.rtlsID = parseInt(e.target.value, 10);
+  };
   rtlsWrapper.appendChild(inputRTLS);
   leftColumn.appendChild(rtlsWrapper);
 
@@ -62,6 +68,9 @@ export const personBuilder = (person: Person) => {
   inputScud.type = 'text';
   inputScud.value = person.scudID.toString();
   inputScud.setAttribute('class', 'personRtlsInput personInput');
+  inputScud.onchange = (e) => {
+    person.scudID = parseInt(e.target.value, 10);
+  };
   scudWrapper.appendChild(inputScud);
   leftColumn.appendChild(scudWrapper);
 

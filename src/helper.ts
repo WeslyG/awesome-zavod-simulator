@@ -9,14 +9,15 @@ export const lineBuilder = () => {
       const person = window.personList[window.selectedCurrentUser - 1];
       const personPoint: Points = person.pointList;
       const div = createDiv();
-      const size = 10;
+      const size = 8;
 
       div.style.position = 'absolute';
       div.style.height = `${size}px`;
       div.style.width = `${size}px`;
       div.style.borderRadius = '50%';
-      div.style.top = `${event.offsetY}px`;
-      div.style.left = `${event.offsetX}px`;
+      // TODO: Кривая рисовалка
+      div.style.top = `${event.offsetY + 2}px`;
+      div.style.left = `${event.offsetX + 3}px`;
       div.style.backgroundColor = person.color.color;
       div.className = 'linePoint';
       area.append(div);

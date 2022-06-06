@@ -2,10 +2,7 @@ import { Action } from './action';
 import { createDiv } from '../helper';
 import { area, CustomWindow } from '../../main';
 
-declare let window: CustomWindow;
-
 export const actionEditor = (action: Action) => {
-  console.log('started');
   const div = createDiv();
   div.setAttribute('class', `${action.name}Obstacle`);
   div.style.backgroundColor = action.color;
