@@ -9,6 +9,7 @@ import { initActions } from './src/actions/actionList';
 
 declare let window: CustomWindow;
 export interface CustomWindow extends Window {
+  rerenderLineColor: number;
   currentState: ModeStateType;
   moveSpeed: number;
   previous: undefined | HTMLDivElement;
@@ -30,13 +31,14 @@ export const clearAllElement = document.querySelector('#clearAll') as HTMLDivEle
 export const resetElement = document.querySelector('#reset') as HTMLDivElement;
 
 window.currentState = 'Play';
-
+window.rerenderLineColor = 1;
 window.selectedCurrentUser = undefined;
 
 // TODO:  экспорты или чтение из localSTorage
 window.personList = [];
 
 if (document && rootContainer) {
+  console.log(window.rerenderLineColor);
   // Person State
   personCreator();
 
@@ -44,7 +46,6 @@ if (document && rootContainer) {
   resetElement.onclick = () => resetPosition();
 
   area.onmousedown = (e) => {
-    console.log(e);
     if (e.target.id !== 'actionArea') {
       window.selectedMovedElement = e.target as HTMLElement;
       window.movedOffsetX = e.offsetX;

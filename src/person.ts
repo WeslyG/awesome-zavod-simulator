@@ -4,7 +4,10 @@ import { generateRandomColor } from './helper';
 export class Person {
   readonly id: number;
   readonly name: string;
-  readonly color: string;
+  readonly color: {
+    color: string;
+    active: string;
+  };
 
   scudID: number;
   rtlsID: number;

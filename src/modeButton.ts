@@ -7,6 +7,7 @@ export const watchModeButton = () => {
   document.querySelector('#modeButton').onclick = () => {
     window.currentState = revertModeButton(window.currentState);
     writeModeButtonText(window.currentState);
+    window.rerenderLineColor = 0;
   };
 };
 

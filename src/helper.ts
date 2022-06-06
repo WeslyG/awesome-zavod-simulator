@@ -17,11 +17,18 @@ export const lineBuilder = () => {
       div.style.borderRadius = '50%';
       div.style.top = `${event.offsetY}px`;
       div.style.left = `${event.offsetX}px`;
-      div.style.backgroundColor = person.color;
+      div.style.backgroundColor = person.color.color;
+      div.className = 'linePoint';
       area.append(div);
 
       if (window.previous !== undefined) {
-        drawLine(event.offsetX, event.offsetY, window.previous.style.left, window.previous.style.top, person.color);
+        drawLine(
+          event.offsetX,
+          event.offsetY,
+          window.previous.style.left,
+          window.previous.style.top,
+          person.color.color,
+        );
       }
       window.previous = div;
       personPoint.push({
@@ -35,7 +42,10 @@ export const lineBuilder = () => {
 export const drawLine = (x1, y1, x2, y2, color) => {
   var newDiv = document.createElement('div');
   newDiv.style.position = 'absolute';
-  newDiv.innerHTML = `<svg width="900" height="900"><line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${color}"/></svg>`;
+  newDiv.innerHTML = `
+    <svg width="900" height="900">
+      <line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${color}"/>
+    </svg>`;
   area.append(newDiv);
 };
 
@@ -83,7 +93,6 @@ export const resetPosition = () => {
           }
         });
         if (playerId) {
-          console.log(player);
           player.style.top = window.personList[playerId - 1].pointList[0].y + 'px';
           player.style.left = window.personList[playerId - 1].pointList[0].x + 'px';
         }
@@ -109,7 +118,52 @@ export const randomChoice = <T>(choices: Array<T>): T => {
   return choices[index];
 };
 
-export const colors = ['#1EA7E3', '#1ABCB1', '#92C83F', '#107AA2', '#FCD20A', '#F0509A'];
+export const searchOpacityColorByOriginal = (color: string): string => {
+  let result = '';
+  colors.map((cls) => {
+    if (cls.color === color) {
+      result = cls.active;
+    }
+  });
+  return result;
+};
+
+export const searchOriginalColorByOpacity = (color: string): string => {
+  let result = '';
+  colors.map((cls) => {
+    if (cls.active === color) {
+      result = cls.color;
+    }
+  });
+  return result;
+};
+
+export const colors = [
+  {
+    color: 'rgb(30, 167, 227)',
+    active: 'rgba(30, 168, 227, 0.3)',
+  },
+  {
+    color: 'rgb(26, 188, 177)',
+    active: 'rgba(26, 188, 177, 0.3)',
+  },
+  {
+    color: 'rgb(146, 200, 63)',
+    active: 'rgba(145, 200, 63, 0.3)',
+  },
+  {
+    color: 'rgb(16, 122, 162)',
+    active: 'rgba(16, 123, 162, 0.3)',
+  },
+  {
+    color: 'rgb(252, 210, 10)',
+    active: 'rgba(252, 212, 10, 0.3)',
+  },
+  {
+    color: 'rgb(240, 80, 154)',
+    active: 'rgba(240, 80, 155, 0.3)',
+  },
+];
 
 export const russianMansNames = [
   'Александр',

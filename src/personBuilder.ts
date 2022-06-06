@@ -1,4 +1,4 @@
-import { createDiv, generateRandomColor } from './helper';
+import { createDiv } from './helper';
 import { Person } from './person';
 
 export const personBuilder = (person: Person) => {
@@ -67,7 +67,7 @@ export const personBuilder = (person: Person) => {
 
   const selectButton = createDiv();
   selectButton.setAttribute('class', 'selectUserButton');
-  selectButton.setAttribute('style', `background: ${person.color}`);
+  selectButton.setAttribute('style', `background: ${person.color.color}`);
 
   selectButton.innerHTML = 'Выбрать';
   rightColumn.appendChild(selectButton);
