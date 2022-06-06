@@ -55,6 +55,18 @@ export const getOffsetByType = (type) => {
   }
 };
 
+export const clearAll = () => {
+  area.innerHTML = '';
+  window.selectedCurrentUser = undefined;
+  window.selectedMovedElement = undefined;
+  window.movedOffsetX = undefined;
+  window.movedOffsetY = undefined;
+  const users = document.querySelector('#personList') as HTMLElement;
+  users.innerHTML = '';
+  window.personList = [];
+  window.previous = undefined;
+};
+
 export const generateRandomUserName = () => {
   return randomChoice(russianMansNames);
 };

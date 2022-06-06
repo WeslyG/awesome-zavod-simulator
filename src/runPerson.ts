@@ -1,4 +1,4 @@
-import { CustomWindow, rootContainer } from '../main';
+import { area, CustomWindow, rootContainer } from '../main';
 import { createDiv } from './helper';
 import { Person } from './person';
 
@@ -16,7 +16,7 @@ export const runPerson = (person: Person) => {
     if (person.currentPointTarget === 0) {
       player = createDiv();
       player.setAttribute('class', `player player${person.id}`);
-      rootContainer.append(player);
+      area.append(player);
       player.style.backgroundColor = person.color;
       player.style.position = 'absolute';
       player.style.width = '18px';

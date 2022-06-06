@@ -8,5 +8,14 @@ export const wallAction = new Action('wall', '#7950f298');
 
 export const initActions = () => {
   const camera = document.querySelector('#camera') as HTMLDivElement;
-  camera.onclick = (e) => actionEditor(cameraAction);
+  camera.onclick = () => actionEditor(cameraAction);
+
+  const rtls = document.querySelector('#rtls') as HTMLDivElement;
+  rtls.onclick = () => actionEditor(rtlsAction);
+
+  const scud = document.querySelector('#scud') as HTMLDivElement;
+  scud.onclick = () => actionEditor(scudAction);
+
+  const wall = document.querySelector('#wall') as HTMLDivElement;
+  wall.onclick = () => actionEditor(wallAction);
 };

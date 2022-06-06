@@ -101,6 +101,28 @@ body {
   justify-content: left;
 }
 
+#footerRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#reset {
+  background-color: rgba(255, 0, 0, 0.507);
+  padding: 10px 25px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#clearAll {
+  background-color: rgba(255, 145, 0, 0.637);
+  padding: 10px 25px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 .personInput {
   height: 20px;
   border: 1px solid rgba(33, 38, 39, 0.425);

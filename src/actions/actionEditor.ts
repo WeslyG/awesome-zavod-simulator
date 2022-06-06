@@ -7,7 +7,7 @@ declare let window: CustomWindow;
 export const actionEditor = (action: Action) => {
   console.log('started');
   const div = createDiv();
-  div.setAttribute('class', 'cameraObstacle');
+  div.setAttribute('class', `${action.name}Obstacle`);
   div.style.backgroundColor = action.color;
   div.style.position = 'absolute';
   div.style.height = '120px';
@@ -16,33 +16,21 @@ export const actionEditor = (action: Action) => {
   div.style.left = '340px';
   area.append(div);
 
-  div.keydown = (e) => {
-    // взять положить
-    console.log(e);
-    // console.log('onclick');
-    // if (window.moveElement) {
-    //   div.style.top = e.offsetY + 'px';
-    //   div.style.left = e.offsetX + 'px';
-    // } else {
-    //   window.moveElement = true;
-    // }
-  };
-
   div.onwheel = (e) => {
     if (e.shiftKey) {
       // Shift ----->
       const currentWith = parseInt(div.style.width);
-      editItem(div, e, currentWith, 'width', 20);
-      console.log('shift');
+      editItem(div, e, currentWith, 'width', 10);
+      // console.log('shift');
     } else if (e.ctrlKey) {
       // CTRL - up/down
       const currentHeight = parseInt(div.style.height);
-      editItem(div, e, currentHeight, 'height', 20);
-      console.log('ctrl');
+      editItem(div, e, currentHeight, 'height', 10);
+      // console.log('ctrl');
     } else if (e.altKey) {
       // ALT - rotate
-      const parsedDeg = div.style.transform.match(/\((\d+)deg\)/);
-      const current = parsedDeg?.length > 0 ? parseInt(parsedDeg[1]) : 0;
+      const deg = div.style.transform.match(/\((\d+)deg\)/);
+      const current = deg?.length > 0 ? parseInt(deg[1]) : 0;
 
       if (Math.sign(e.wheelDelta) === -1) {
         const value = current - 10;
@@ -51,7 +39,7 @@ export const actionEditor = (action: Action) => {
         const value = current + 10;
         div.style.transform = `rotate(${value}deg)`;
       }
-      console.log('alt');
+      // console.log('alt');
     }
   };
 };
