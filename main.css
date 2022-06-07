@@ -104,7 +104,7 @@ body {
   visibility: hidden;
   margin: 0px;
   padding: 15px;
-  color: red;
+  font-size: 15px;
   list-style-type: none;
 }
 
@@ -224,16 +224,16 @@ body {
 #speedSelectMenu {
   display: flex;
   flex-direction: row;
-  justify-content: right;
   align-items: center;
   height: 0px;
 }
 
-#speedSelectText {
-  padding-right: 20px;
+#speedSelect {
+  width: 150px;
+  height: 30px;
 }
 
-#speedSelect {
+#speedAction {
   width: 150px;
   height: 30px;
 }

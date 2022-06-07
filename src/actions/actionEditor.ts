@@ -2,9 +2,13 @@ import { Action } from './action';
 import { createDiv } from '../helper';
 import { area, CustomWindow } from '../../main';
 
+declare let window: CustomWindow;
+
 export const actionEditor = (action: Action) => {
   const div = createDiv();
-  div.setAttribute('class', `${action.name}Obstacle obstacle`);
+  div.setAttribute('class', `${action.name} obstacle`);
+  window.obstacleState[action.name] = ++window.obstacleState[action.name];
+  div.setAttribute('id', `${action.name}${window.obstacleState[action.name]}`);
   div.style.backgroundColor = action.color;
   div.style.position = 'absolute';
   div.style.height = '120px';

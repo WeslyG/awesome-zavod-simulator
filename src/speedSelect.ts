@@ -1,25 +1,26 @@
 import { CustomWindow } from '../main';
-import { searchOpacityColorByOriginal, searchOriginalColorByOpacity } from './helper';
+import { entryEngine } from './entryEngine/entry';
+import { createDiv, searchOpacityColorByOriginal, searchOriginalColorByOpacity } from './helper';
 import { revertModeButton, writeModeButtonText } from './modeButton';
+import { cameraReaction, rtlsReaction, scudReaction } from './reactions/reactions';
 import { runPerson } from './runPerson';
 
 declare let window: CustomWindow;
 
 export const speedSelect = () => {
   const speedSelect = document.querySelector('#speedSelect') as HTMLSelectElement;
-
   window.moveSpeed = parseInt(speedSelect.value);
 
-  startInterval();
+  runViewEngine();
 
   speedSelect.onchange = (event) => {
     clearInterval(window.runIntervalID);
     window.moveSpeed = parseInt(event.target.value);
-    startInterval();
+    runViewEngine();
   };
 };
 
-const startInterval = () => {
+const runViewEngine = () => {
   window.runIntervalID = setInterval(() => {
     window.personList.map((i) => {
       runPerson(i);
@@ -27,6 +28,59 @@ const startInterval = () => {
     lineColorToOpacity();
     playButtonHandlers();
   }, window.moveSpeed);
+};
+
+export const startLogger = () => {
+  const speedAction = document.querySelector('#speedAction') as HTMLSelectElement;
+  window.calculateSpeed = parseInt(speedAction.value);
+
+  runLogEngine();
+
+  speedAction.onchange = (event) => {
+    clearInterval(window.calculateId);
+    window.calculateSpeed = parseInt(event.target.value);
+    runLogEngine();
+  };
+};
+
+const runLogEngine = () => {
+  window.calculateId = setInterval(() => {
+    const obstacles = document.querySelectorAll('.obstacle');
+    const players = document.querySelectorAll('.player');
+    const obstaclesArr = Array.from(obstacles);
+    const playersArr = Array.from(players);
+    console.log(obstaclesArr);
+    if (playersArr.length > 0 && obstaclesArr.length > 0) {
+      obstaclesArr.map((obst) => {
+        playersArr.map((player) => {
+          const entryResult = entryEngine(obst, {
+            x: parseInt(player.style.top, 10),
+            y: parseInt(player.style.left, 10),
+          });
+          if (entryResult) {
+            const playerId = Array.from(player.classList).filter((i) => i !== 'player')[0];
+            const obstType = Array.from(obst.classList).filter((i) => i !== 'obstacle')[0];
+            const obstId = obst.getAttribute('id') as string;
+            if (obstType === 'camera') {
+              cameraReaction(playerId, obstId);
+            } else if (obstType === 'rtls') {
+              rtlsReaction(playerId, { rtlsZoneId: obstId, x: player.style.top, y: player.style.left });
+            } else if (obstType === 'scud') {
+              scudReaction(playerId, obstId);
+            }
+          }
+        });
+      });
+    }
+
+    const logView = document.querySelector('#logView') as HTMLElement;
+    logView.innerHTML = '';
+    window.logEvents.map((i) => {
+      const z = document.createElement('li');
+      z.innerText = i;
+      logView.append(z);
+    });
+  }, window.calculateSpeed);
 };
 
 export const checkLinesExist = () => {

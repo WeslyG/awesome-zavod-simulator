@@ -2,6 +2,10 @@ import { Points, CustomWindow, area } from '../main';
 
 declare let window: CustomWindow;
 
+export const createNewDate = () => {
+  return new Date().toLocaleString();
+};
+
 export const lineBuilder = () => {
   window.previous = undefined;
   area.onclick = (event) => {
@@ -76,10 +80,26 @@ export const clearAll = () => {
   users.innerHTML = '';
   window.personList = [];
   window.previous = undefined;
+  window.logEvents = [];
+  const logger = document.querySelector('#logView') as HTMLElement;
+  logger.innerHTML = '';
+  window.currentState = 'Play';
+  const personUi = document.querySelector('#personList') as HTMLElement;
+  const logViewUi = document.querySelector('#logView') as HTMLElement;
+  personUi.style.visibility = 'visible';
+  personUi.style.height = '0px';
+  personUi.style.padding = '0px';
+  logViewUi.style.visibility = 'hidden';
+  window.obstacleState = {
+    camera: 0,
+    rtls: 0,
+    scud: 0,
+  };
 };
 
 export const resetPosition = () => {
   if (arrayNotEmpty(window.personList)) {
+    window.logEvents = [];
     window.personList.map((i) => (i.currentPointTarget = 0));
     const players = document.querySelectorAll('.player');
     const playersArr = Array.from(players);

@@ -4,7 +4,7 @@ import { watchModeButton as playButtonState } from './src/modeButton';
 import './main.css';
 import { Person } from './src/person';
 import { personCreator } from './src/personCreator';
-import { speedSelect } from './src/speedSelect';
+import { speedSelect, startLogger } from './src/speedSelect';
 import { initActions } from './src/actions/actionList';
 
 declare let window: CustomWindow;
@@ -12,13 +12,18 @@ export interface CustomWindow extends Window {
   rerenderLineColor: number;
   currentState: ModeStateType;
   moveSpeed: number;
+  calculateSpeed: number;
   previous: undefined | HTMLDivElement;
   personList: Person[];
+  calculateId: number;
   runIntervalID: number;
   movedOffsetX: undefined | number;
   movedOffsetY: undefined | number;
   selectedMovedElement: undefined | HTMLElement;
   selectedCurrentUser: undefined | number;
+  logEvents: Array<string>;
+  globalProbability: number;
+  obstacleState: { camera: number; rtls: number; scud: number };
 }
 
 export type Coordinates = { x: number; y: number };
@@ -33,6 +38,13 @@ export const resetElement = document.querySelector('#reset') as HTMLDivElement;
 window.currentState = 'Play';
 window.rerenderLineColor = 1;
 window.selectedCurrentUser = undefined;
+window.logEvents = [];
+window.globalProbability = 1;
+window.obstacleState = {
+  camera: 0,
+  rtls: 0,
+  scud: 0,
+};
 
 // TODO:  экспорты или чтение из localSTorage
 window.personList = [];
@@ -77,4 +89,6 @@ if (document && rootContainer) {
 
   // Speed state
   speedSelect();
+
+  startLogger();
 }
