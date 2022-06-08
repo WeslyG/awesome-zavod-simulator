@@ -6,7 +6,7 @@ declare let window: CustomWindow;
 
 export const runPerson = (person: Person) => {
   if (window.currentState === 'Edit') {
-    const currentPoint = person.pointList[person.currentPointTarget];
+    const currentPoint = person.pointList[person.currentPointTarget === -1 ? 0 : person.currentPointTarget];
     if (currentPoint === undefined) {
       return;
     }
@@ -28,6 +28,17 @@ export const runPerson = (person: Person) => {
       });
     } else {
       player = document.querySelector(`.player${person.id}`) as HTMLDivElement;
+    }
+
+    if (person.currentPointTarget === -1) {
+      person.currentPointTarget = 0;
+
+      player = document.querySelector(`.player${person.id}`) as HTMLDivElement;
+
+      person.setPosition({
+        x: person.pointList[0].x,
+        y: person.pointList[0].y,
+      });
     }
 
     if (Math.abs(person.y - currentPoint.y) < 6 && Math.abs(person.x - currentPoint.x) < 6) {

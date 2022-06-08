@@ -99,17 +99,18 @@ export const clearAll = () => {
 
 export const resetPosition = () => {
   if (arrayNotEmpty(window.personList)) {
+    window.logEvents = [];
+    window.personList.map((i) => (i.currentPointTarget = -1));
     if (window.currentState === 'Edit') {
-      window.currentState = 'Play';
       window.rerenderLineColor = 0;
       const personUi = document.querySelector('#personList') as HTMLElement;
       const logViewUi = document.querySelector('#logView') as HTMLElement;
       personUi.style.visibility = 'visible';
       personUi.style.padding = '15px';
       logViewUi.style.visibility = 'hidden';
-      window.logEvents = [];
-      window.personList.map((i) => (i.currentPointTarget = 0));
     }
+    window.currentState = 'Play';
+
     const players = document.querySelectorAll('.player');
     const playersArr = Array.from(players);
     if (arrayNotEmpty(playersArr)) {
@@ -178,11 +179,11 @@ export const colors = [
     active: 'rgba(26, 188, 177, 0.3)',
   },
   {
-    color: 'rgba(96, 230, 154)',
+    color: 'rgb(96, 230, 154)',
     active: 'rgba(96, 230, 154, 0.3)',
   },
   {
-    color: 'rgba(107, 215, 254)',
+    color: 'rgb(107, 215, 254)',
     active: 'rgba(107, 215, 254, 0.3)',
   },
   {
