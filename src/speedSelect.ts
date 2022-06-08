@@ -49,7 +49,6 @@ const runLogEngine = () => {
     const players = document.querySelectorAll('.player');
     const obstaclesArr = Array.from(obstacles);
     const playersArr = Array.from(players);
-    console.log(obstaclesArr);
     if (playersArr.length > 0 && obstaclesArr.length > 0) {
       obstaclesArr.map((obst) => {
         playersArr.map((player) => {

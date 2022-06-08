@@ -45,8 +45,6 @@ window.obstacleState = {
   rtls: 0,
   scud: 0,
 };
-
-// TODO:  экспорты или чтение из localSTorage
 window.personList = [];
 
 if (document && rootContainer) {

@@ -99,6 +99,12 @@ export const clearAll = () => {
 
 export const resetPosition = () => {
   if (arrayNotEmpty(window.personList)) {
+    window.currentState = 'Play';
+    const personUi = document.querySelector('#personList') as HTMLElement;
+    const logViewUi = document.querySelector('#logView') as HTMLElement;
+    personUi.style.visibility = 'visible';
+    personUi.style.padding = '15px';
+    logViewUi.style.visibility = 'hidden';
     window.logEvents = [];
     window.personList.map((i) => (i.currentPointTarget = 0));
     const players = document.querySelectorAll('.player');
@@ -169,16 +175,20 @@ export const colors = [
     active: 'rgba(26, 188, 177, 0.3)',
   },
   {
+    color: 'rgba(96, 230, 154)',
+    active: 'rgba(96, 230, 154, 0.3)',
+  },
+  {
+    color: 'rgba(107, 215, 254)',
+    active: 'rgba(107, 215, 254, 0.3)',
+  },
+  {
     color: 'rgb(146, 200, 63)',
     active: 'rgba(145, 200, 63, 0.3)',
   },
   {
     color: 'rgb(16, 122, 162)',
     active: 'rgba(16, 123, 162, 0.3)',
-  },
-  {
-    color: 'rgb(252, 210, 10)',
-    active: 'rgba(252, 212, 10, 0.3)',
   },
   {
     color: 'rgb(240, 80, 154)',
