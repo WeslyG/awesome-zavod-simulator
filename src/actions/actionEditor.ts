@@ -5,6 +5,20 @@ import { area, CustomWindow } from '../../main';
 declare let window: CustomWindow;
 
 export const actionEditor = (action: Action) => {
+  const allUsersCard = document.querySelectorAll('.userCard');
+  Array.from(allUsersCard).map((user) => {
+    user.style.backgroundColor = '#fff';
+  });
+
+  const element = document.querySelectorAll(`div.rightFlex > div`);
+  Array.from(element).map((userBtn) => {
+    if (userBtn.innerHTML === 'Выбрано') {
+      userBtn.innerHTML = 'Выбрать';
+    }
+  });
+  window.selectedCurrentUser = undefined;
+  window.previous = undefined;
+
   const div = createDiv();
   div.setAttribute('class', `${action.name} obstacle`);
   window.obstacleState[action.name] = ++window.obstacleState[action.name];
