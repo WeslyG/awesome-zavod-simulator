@@ -36,26 +36,25 @@ export const actionEditor = (action: Action) => {
       // Shift ----->
       const currentWith = parseInt(div.style.width);
       editItem(div, e, currentWith, 'width', 10);
-      // console.log('shift');
     } else if (e.ctrlKey) {
       // CTRL - up/down
       const currentHeight = parseInt(div.style.height);
       editItem(div, e, currentHeight, 'height', 10);
-      // console.log('ctrl');
-    } else if (e.altKey) {
-      // ALT - rotate
-      const deg = div.style.transform.match(/\((\d+)deg\)/);
-      const current = deg?.length > 0 ? parseInt(deg[1]) : 0;
-
-      if (Math.sign(e.wheelDelta) === -1) {
-        const value = current - 10;
-        div.style.transform = `rotate(${value}deg)`;
-      } else if (Math.sign(e.wheelDelta) === 1) {
-        const value = current + 10;
-        div.style.transform = `rotate(${value}deg)`;
-      }
-      // console.log('alt');
     }
+    // else if (e.altKey) {
+    //   // ALT - rotate
+    //   const deg = div.style.transform.match(/\((\d+)deg\)/);
+    //   const current = deg?.length > 0 ? parseInt(deg[1]) : 0;
+
+    //   if (Math.sign(e.wheelDelta) === -1) {
+    //     const value = current - 10;
+    //     div.style.transform = `rotate(${value}deg)`;
+    //   } else if (Math.sign(e.wheelDelta) === 1) {
+    //     const value = current + 10;
+    //     div.style.transform = `rotate(${value}deg)`;
+    //   }
+    //   // console.log('alt');
+    // }
   };
 };
 

@@ -4,7 +4,10 @@
   "description": "",
   "main": "main.ts",
   "scripts": {
-    "start": "webpack serve"
+    "dev": "webpack serve",
+    "build": "webpack --config webpack.config.prod.js",
+    "server": "ts-node server.ts",
+    "start": "npm run build && npm run server"
   },
   "keywords": [],
   "author": "",
@@ -15,9 +18,12 @@
     "npm": "8.5.5"
   },
   "dependencies": {
-    "html-loader": "^3.1.0"
+    "express": "^4.18.1",
+    "socket.io": "^4.5.1"
   },
   "devDependencies": {
+    "html-loader": "^3.1.0",
+    "ts-node": "^10.8.1",
     "@typescript-eslint/eslint-plugin": "^5.16.0",
     "@typescript-eslint/parser": "^5.16.0",
     "css-loader": "^6.7.1",
