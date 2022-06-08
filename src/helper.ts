@@ -100,6 +100,7 @@ export const clearAll = () => {
 export const resetPosition = () => {
   if (arrayNotEmpty(window.personList)) {
     window.currentState = 'Play';
+    window.rerenderLineColor = 0;
     const personUi = document.querySelector('#personList') as HTMLElement;
     const logViewUi = document.querySelector('#logView') as HTMLElement;
     personUi.style.visibility = 'visible';
